@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>people login</title>
+  </head>
+  <body>
+      <div>
+            <form action="http://localhost:3000/office/home">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Home</button>
+            </form>
+            <br><br>
+            <div id="demo_1"></div>
+            
+        <script>
+            var list_1 = "<%= first_name %>";
+            list_1 = list_1.split(',');
+            var list_2 = "<%= last_name %>";
+            list_2 = list_2.split(',');
+            var list_3 = "<%= can_id %>";
+            list_3 = list_3.split(',');
+            var list_4 = "<%= app_ %>";
+            list_4 = list_4.split(',');
+            var x = '<table class="table"> <thead> <tr><th scope="col">#</th> <th scope="col">First Name</th> <th scope="col">Last Name</th> <th scope="col">Button</th> </tr>  </thead> <tbody>';
+            var y ,j; 
+            for (y = 0;y<list_1.length;y++)
+            {    j = y+1
+                //x = x+list_1[y]+" "+list_3[y]+' '+list_2[y]+"<br>";
+                x = x + "<tr>"
+                x = x + '<th scope="row">'+j+'</th>'
+                x = x + '<td>'+list_1[y]+'</td>'
+                x = x + '<td>'+list_2[y] +'</td>'
+                if (list_4[y]=="true"){
+                  x = x + '<td>Approved</td>'
+                }else{
+                  x = x + '<td> <form action ="http://localhost:3000/office/approve" methon ="POST"> <button type="submit" class="btn btn-primary" name="_id" value ='+list_3[y]+'>Approve</button></td>';
+                }
+                x = x + "<tr>"
+            }
+            x = x+ "</tbody> </table>"
+            document.getElementById("demo_1").innerHTML = x;
+        </script>
+
+        <form action="http://localhost:3000/office/result">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">result</button>
+          <h1><%= result %></h1>
+        </form>
+
+      </div>
+
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
